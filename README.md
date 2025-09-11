@@ -7,7 +7,15 @@
 
 ## References and Resources
 
-List any resources used here, or simply put `N/A` if not applicable.
+For Custom Adapter:
+https://www.geeksforgeeks.org/android/custom-arrayadapter-with-listview-in-android/
+https://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView 
+
+For the Popup:
+https://developer.android.com/reference/androidx/appcompat/app/AlertDialog
+
+
+
 
 ## Verbal Collaboration
 

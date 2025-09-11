@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    // declare variable so we can reference later
+    // declaring necessary variables
     ListView cityList;
     ArrayAdapter<String> cityAdapter;
     ArrayList<String> dataList;
@@ -54,26 +54,34 @@ public class MainActivity extends AppCompatActivity {
 
         Button addBtn = findViewById(R.id.addCity);
         addBtn.setOnClickListener(v -> {
-            // Build an input dialog
+
+            // Create an input field for the dialog
             final EditText input = new EditText(this);
             input.setHint("City name");
 
+            // Building the show the popup
             new AlertDialog.Builder(this)
                     .setTitle("Add City")
                     .setView(input)
                     .setPositiveButton("Add", (dialog, which) -> {
                         String name = input.getText().toString().trim();
+
+                        // Prevent user from adding a empty city
                         if (name.isEmpty()) {
                             Toast.makeText(this, "City name can't be empty", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        // (Optional) prevent duplicates
+                        // Prevent duplicates
                         if (dataList.contains(name)) {
                             Toast.makeText(this, "City already in list", Toast.LENGTH_SHORT).show();
                             return;
                         }
+
+                        // adding the city to the list and displaying the change
                         dataList.add(name);
                         cityAdapter.notifyDataSetChanged();
+
+                        //scrolling to the newly added row
                         cityList.smoothScrollToPosition(dataList.size() - 1);
                     })
                     .setNegativeButton("Cancel", null)

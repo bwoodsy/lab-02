@@ -20,9 +20,8 @@ public class CityAdapter extends ArrayAdapter<String> {
         void onDeleteClick(int position);
     }
 
-    // Declaring references passed via constructor
-    private final List<String> cities;
-    private final OnDeleteClickListener listener;
+    private final List<String> cities;            // reference for data
+    private final OnDeleteClickListener listener; // callback for delete
 
     // Constructor
     public CityAdapter(@NonNull Context context, @NonNull List<String> cities,
@@ -36,18 +35,22 @@ public class CityAdapter extends ArrayAdapter<String> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        // Reuse an old row otherwise inflate a new one from xml
         View row = convertView;
         if (row == null) {
             row = LayoutInflater.from(getContext())
                     .inflate(R.layout.item_list, parent, false);
         }
 
+        // Grab references to row's views
         TextView cityName = row.findViewById(R.id.cityName);
         Button deleteBtn = row.findViewById(R.id.deleteButton);
 
+        // Bind the position data
         String city = getItem(position);
         cityName.setText(city);
 
+        // Hook delete button and report back to MainActivity.java via callback
         final int currentPos = position;
         deleteBtn.setOnClickListener(v -> listener.onDeleteClick(currentPos));
 
